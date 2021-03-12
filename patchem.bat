@@ -14,7 +14,7 @@ if %var% LSS 2 GOTO :patching
 
 :patching
 ECHO %date% %time% "Patching servers from servers.txt..." >>D:\cron\patchadams\status.txt
-D:\cron\patchadams\psexec.exe -accepteula -d -s @D:\cron\patchadams\servers.txt \\vm-schools-01\netlogon\pspatch.bat
+D:\cron\patchadams\psexec.exe -accepteula -d -s @D:\cron\patchadams\servers.txt \\vm-acme-01\netlogon\pspatch.bat
 GOTO :EOF
 
 :skip_patching
