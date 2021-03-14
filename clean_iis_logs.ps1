@@ -1,0 +1,2 @@
+Get-ChildItem "C:\inetpub\logs\LogFiles\W3SVC2" -Recurse -File | Where CreationTime -lt  (Get-Date).AddDays(-14)  | Remove-Item -Force
+Get-ChildItem "C:\inetpub\logs\LogFiles\W3SVC4" -Recurse -File | Where CreationTime -lt  (Get-Date).AddDays(-14)  | Remove-Item -Force
