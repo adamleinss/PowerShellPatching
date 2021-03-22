@@ -32,9 +32,13 @@ if (($rslt[$i] | select-string -pattern 'Windows Server 2012') -and $found2012 -
 
        $2012 = $rslt[$i+1] | select-string -pattern $kbpattern
        $KB2012 = $2012.Matches
-       $patchz += $KB2012
-       $found2012 = "TRUE"
-       #write-host $KB2012
+    
+    if ($KB2012 -ne $KB2012R2) {
+	   
+			$patchz += $KB2012
+			$found2012 = "TRUE"
+			#write-host $KB2012
+	   } #end dup if
     
       } #end if
     } #end if
