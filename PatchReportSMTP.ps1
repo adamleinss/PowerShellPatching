@@ -75,7 +75,7 @@ $patchlist = "$($Patchz[0])","$($Patchz[1])", "$($Patchz[2])", "$($Patchz[3])"
 write-host $patchlist
 
 Invoke-Command -ComputerName $servers {
-    Get-HotFix -Id $using:patchlist 
+    Get-HotFix -Id $using:patchlist | Format-Table -Wrap | Out-String -Width 300
 } -Credential ($Credential) -ErrorAction SilentlyContinue -ErrorVariable Problem
  
 foreach ($p in $Problem) {
