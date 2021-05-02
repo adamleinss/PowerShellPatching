@@ -75,7 +75,7 @@ $patchlist = "$($Patchz[0])","$($Patchz[1])", "$($Patchz[2])", "$($Patchz[3])"
 write-host $patchlist
 
 Invoke-Command -ComputerName $servers {
-    Get-HotFix -Id $using:patchlist | Sort-Object Source | Format-Table -Autosize
+    Get-HotFix -Id $using:patchlist 
 } -Credential ($Credential) -ErrorAction SilentlyContinue -ErrorVariable Problem
  
 foreach ($p in $Problem) {
@@ -93,4 +93,3 @@ $patchreport = get-content D:\CRON\PatchAdams\patchreport.txt -Raw
 
 Send-MailMessage -From 'patchreport@acme.com' -To 'daboss@acme.com' -Subject 'Patch Compliance Report' -Body "
 $patchreport" -SmtpServer '127.0.0.1'
-
