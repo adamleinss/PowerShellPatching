@@ -1,4 +1,6 @@
-﻿Stop-Transcript | out-null
+$FormatEnumerationLimit=-1
+
+Stop-Transcript | out-null
 Start-Transcript -path D:\cron\patchadams\patchreport.txt
 
 $Credential = Import-CliXml -Path D:\cron\PatchAdams\bsod.cred
@@ -35,13 +37,14 @@ if (($rslt[$i] | select-string -pattern 'Windows Server 2012') -and $found2012 -
 
        $2012 = $rslt[$i+1] | select-string -pattern $kbpattern
        $KB2012 = $2012.Matches
-       
-       if ($KB2012 -ne $KB2012R2) {
-	     	$patchz += $KB2012
-		$found2012 = "TRUE"
-		#write-host $KB2012
+	   
+	   if ($KB2012 -ne $KB2012R2) {
+	   
+			$patchz += $KB2012
+			$found2012 = "TRUE"
+			#write-host $KB2012
 	   } #end dup if
-    
+	          
       } #end if
     } #end if
 
@@ -72,7 +75,7 @@ $patchlist = "$($Patchz[0])","$($Patchz[1])", "$($Patchz[2])", "$($Patchz[3])"
 write-host $patchlist
 
 Invoke-Command -ComputerName $servers {
-    Get-HotFix -Id $using:patchlist
+    Get-HotFix -Id $using:patchlist | Sort-Object Source | Format-Table -Autosize
 } -Credential ($Credential) -ErrorAction SilentlyContinue -ErrorVariable Problem
  
 foreach ($p in $Problem) {
