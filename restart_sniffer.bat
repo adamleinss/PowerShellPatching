@@ -1,0 +1,1 @@
+Powershell.exe -executionpolicy bypass -File D:\cron\patchadams\restart_sniffer.ps1
