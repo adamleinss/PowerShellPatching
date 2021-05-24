@@ -7,7 +7,6 @@ $servers = gc D:\cron\patchadams\servers.txt
 foreach ($server in $servers) {
 
 $result = Get-PendingRebootStatus -ComputerName $server
-write-output $result.pendingreboot
 
 if ($result.pendingreboot -match "True")
 
