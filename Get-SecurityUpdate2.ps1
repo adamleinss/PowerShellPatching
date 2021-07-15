@@ -6,6 +6,8 @@
 # special thanks to Tim Curwick [Twitter: @MadWPowershell] [Blog: https://www.madwithpowershell.com/2014/10/calculating-patch-tuesday-with.html]
 # for date calculation business, which never fails to totally confuse me
 
+# This script was poached from https://github.com/meta-l/MSSecurityUpdates
+
 # version 0.2
 
 # Will need to install MSrcSecurityUpdates module from
