@@ -15,9 +15,9 @@ $found2022 = "FALSE"
 
 For ($i=0; $i -lt $rslt.Length; $i++) {
 #write-output $rslt[$i]
-    if (($rslt[$i] | select-string -pattern 'Windows Server 2012 R2') -and  ($rslt[$i] | select-string -pattern $pattern_no_kb_prefix) -and $found2012r2 -eq "FALSE" ) {
-   # write-output $rslt[$i]
-       $2012R2 = $rslt[$i] | select-string -pattern $pattern_no_kb_prefix
+    if (($rslt[$i] | select-string -pattern 'Windows Server 2012 R2') -and  ($rslt[$i+1] | select-string -pattern $pattern_no_kb_prefix) -and $found2012r2 -eq "FALSE" ) {
+   # write-output $rslt[$i+1]
+       $2012R2 = $rslt[$i+1] | select-string -pattern $pattern_no_kb_prefix
        $KB2012R2 = "KB" + $2012R2.Matches
        $patchz += $KB2012R2
        $found2012r2 = "TRUE"
@@ -25,8 +25,8 @@ For ($i=0; $i -lt $rslt.Length; $i++) {
     
     } #end if
 
-if (($rslt[$i] | select-string -pattern 'Windows Server 2012') -and  ($rslt[$i] | select-string -pattern $pattern_no_kb_prefix) -and $found2012 -eq "FALSE" ) {
-       $2012 = $rslt[$i] | select-string -pattern $pattern_no_kb_prefix
+if (($rslt[$i] | select-string -pattern 'Windows Server 2012') -and  ($rslt[$i+1] | select-string -pattern $pattern_no_kb_prefix) -and $found2012 -eq "FALSE" ) {
+       $2012 = $rslt[$i+1] | select-string -pattern $pattern_no_kb_prefix
        $KB2012 = "KB" + $2012.Matches  
 	   
 	   if ($KB2012 -ne $KB2012R2) {
@@ -41,7 +41,7 @@ if (($rslt[$i] | select-string -pattern 'Windows Server 2012') -and  ($rslt[$i] 
 
 if (($rslt[$i] | select-string -pattern 'Windows Server 2016') -and $found2016 -eq "FALSE" ) {
 
-       $2016 = $rslt[$i] | select-string -pattern $kbpattern
+       $2016 = $rslt[$i+1] | select-string -pattern $kbpattern
        $KB2016 = $2016.Matches
        $patchz += $KB2016
        $found2016 = "TRUE"
@@ -51,7 +51,7 @@ if (($rslt[$i] | select-string -pattern 'Windows Server 2016') -and $found2016 -
 
 if (($rslt[$i] | select-string -pattern 'Windows Server 2019') -and $found2019 -eq "FALSE" ) {
 
-       $2019 = $rslt[$i] | select-string -pattern $kbpattern
+       $2019 = $rslt[$i+1] | select-string -pattern $kbpattern
        $KB2019 = $2019.Matches
        $patchz += $KB2019
        $found2019 = "TRUE"
