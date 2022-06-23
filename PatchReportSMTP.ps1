@@ -101,6 +101,6 @@ Stop-Transcript
 
 $patchreport = get-content D:\CRON\PatchAdams\patchreport.txt -Raw
 
-Send-MailMessage -From 'patchreport@acme.com' -To 'bigguy@acme.com' -Subject 'Patch Compliance Report' -Body "
+Send-MailMessage -From 'patchreport@acme.com' -To 'daboss@acem.com' -Subject 'Patch Compliance Report' -Body "
 $patchreport" -SmtpServer '127.0.0.1'
 
