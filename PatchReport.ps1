@@ -11,6 +11,7 @@ $found2012r2 = "FALSE"
 $found2012 = "FALSE"
 $found2016 = "FALSE"
 $found2019 = "FALSE"
+$found2022 = "FALSE"
 
 For ($i=0; $i -lt $rslt.Length; $i++) {
 #write-output $rslt[$i]
@@ -57,10 +58,20 @@ if (($rslt[$i] | select-string -pattern 'Windows Server 2019') -and $found2019 -
        #write-host $KB2019
     
     } #end if
+    
+if (($rslt[$i] | select-string -pattern 'Windows Server 2022') -and $found2022 -eq "FALSE" ) {
+
+       $2022 = $rslt[$i+1] | select-string -pattern $kbpattern
+       $KB2022 = $2022.Matches
+       $patchz += $KB2022
+       $found2022 = "TRUE"
+       #write-host $KB2022
+    
+    } #end if
 
 } #end for
 
-$patchlist = "$($Patchz[0])","$($Patchz[1])", "$($Patchz[2])", "$($Patchz[3])"
+$patchlist = "$($Patchz[0])","$($Patchz[1])", "$($Patchz[2])", "$($Patchz[3])", "$($Patchz[4])"
 write-host $patchlist
 
 Invoke-Command -ComputerName $servers {
