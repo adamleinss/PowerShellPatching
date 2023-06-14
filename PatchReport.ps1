@@ -34,7 +34,7 @@ foreach ($line in $rslt) {
             # Iterate through each match and append "KB" to the front of it
             foreach ($match in $kbMatches) {
                 $kbNumber = "KB" + $match.Groups[1].Value
-                $kbNumbers.Add($kbNumber)
+                [void]$kbNumbers.Add($kbNumber)
             }
         }
     }
