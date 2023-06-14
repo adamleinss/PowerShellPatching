@@ -72,4 +72,4 @@ $patchreport = get-content D:\CRON\PatchAdams\patchreport.txt -Raw
 Send-MailMessage -From 'patchreport@acme.com' -To 'bob@acme.com' -Subject 'Patch Compliance Report' -Body "
 $patchreport" -SmtpServer '127.0.0.1'
 
-#>
+
