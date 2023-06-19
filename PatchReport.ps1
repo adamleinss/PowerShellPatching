@@ -1,4 +1,10 @@
-﻿$servers = get-content \\vm-acme-01\d$\cron\patchadams\servers.txt
+Stop-Transcript | out-null
+Start-Transcript -path D:\cron\patchadams\patchreport.txt
+
+$Credential = Import-CliXml -Path D:\cron\PatchAdams\bsod.cred
+
+Get-credential ($Credential)
+$servers = get-content \\vm-acme-01\d$\cron\patchadams\servers.txt
 
 $rslt = get-content D:\patching\patches.txt
 
