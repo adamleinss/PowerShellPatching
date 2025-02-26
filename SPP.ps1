@@ -218,7 +218,7 @@ ForEach ($Server in $ServerList)
 {
         $InstalledOn = ""
 
-    if (Test-Connection "$server.schools.mpsds.edu" -Count 1 -ErrorAction SilentlyContinue) {
+    if (Test-Connection "$server.yourdomain.com" -Count 1 -ErrorAction SilentlyContinue) {
 	$BootTime = (Get-WmiObject win32_operatingSystem -computer $Server -ErrorAction SilentlyContinue).lastbootuptime
 	$BootTime = [System.Management.ManagementDateTimeconverter]::ToDateTime($BootTime)
 	$Now = Get-Date
